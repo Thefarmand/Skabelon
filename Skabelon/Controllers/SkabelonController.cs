@@ -15,35 +15,29 @@ namespace Skabelon.Controllers
     public class SkabelonController : ControllerBase
     {
 
-        private string connectionstring = "Skal du selv definere"
+        private string connectionstring =
+                "Server=tcp:thefarmand.database.windows.net,1433;Initial Catalog=Thefarmand;Persist Security Info=False;User ID=Thefarmand;Password=Killer1963;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
             ;
 
-        // GET: api/Skabelon
-        [HttpGet(Name = "GetAll")]
+        // GET: api/BarCodeDatabase
+        [HttpGet(Name = "GetAllUsers")]
         public IEnumerable<Cars> Get()
         {
             SqlConnection conn = new SqlConnection(connectionstring);
-            SqlCommand query = new SqlCommand("SELECT * FROM cars", conn);
+            SqlCommand query = new SqlCommand("SELECT * FROM  cars", conn);
             conn.Open();
             SqlDataReader laeser = query.ExecuteReader();
-            List<Cars> carList = new List<Cars>();
+            List<Cars> UsersList = new List<Cars>();
             if (laeser.HasRows)
             {
                 while (laeser.Read())
                 {
-                    Cars cl = new Cars
-                    {
-                        car_id = Convert.ToInt32(laeser[0]),
-                        car_model = Convert.ToString(laeser[1]),
-                        car_type = Convert.ToString(laeser[2]),
-                        car_year = Convert.ToInt32(laeser[3]),
-                        car_price = Convert.ToInt32(laeser[4])
-                    };
-                    carList.Add(cl);
+                    Cars hs = new Cars { car_id = Convert.ToInt32(laeser[0]), car_model = Convert.ToString(laeser[1]), car_type = Convert.ToString(laeser[2]), car_year = Convert.ToInt32(laeser[3]), car_price = Convert.ToInt32(laeser[4])};
+                    UsersList.Add(hs);
                 }
             }
             conn.Close();
-            return carList;
+            return UsersList;
         }
 
         // GET: api/cars/1
