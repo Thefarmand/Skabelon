@@ -15,8 +15,7 @@ namespace Skabelon.Controllers
     public class SkabelonController : ControllerBase
     {
 
-        private string connectionstring =
-                "Server=tcp:thefarmand.database.windows.net,1433;Initial Catalog=Thefarmand;Persist Security Info=False;User ID=Thefarmand;Password=Killer1963;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+        private string connectionstring = "Skal du selv definere"
             ;
 
         // GET: api/Skabelon
